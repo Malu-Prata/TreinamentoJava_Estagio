@@ -2,26 +2,35 @@ package banco;
 
 public class Banco {
     public static void main(String[] args) {
-        Conta c1 = new Conta(10, 0.0);
-        Conta c2 = new Conta(9, 5.50);
+        // cria a conta normal
+        Conta contaNormal = new Conta(100, 1000.0);
 
-        System.out.println(c1); // Conta Número: 10
-        System.out.println(c2); // Conta Número: 10
+        // cria a conta especial
+        ContaEspecial contaEspecial = new ContaEspecial(200, 1000.0);
 
-        System.out.println("c1.equals(c2)? " + c1.equals(c2)); // true
-
-        c1.deposito(100.0);
-        System.out.println("Saldo após depósito: " + c1.getSaldo()); // 100.0
-
-        c1.saque(30.0);
-        System.out.println("Saldo após saque: " + c1.getSaldo()); // 70.0
-
-        c1.atualiza(1.05);
-        System.out.println("Saldo após atualização (5%): " + c1.getSaldo()); // 73.5
+        // atualiza a taxa
+        contaNormal.atualiza(0.1);
+        contaEspecial.atualiza(0.1);
         
-        System.out.println("Hash c1: " + c1.hashCode()); // ex: 10
-        
-        System.out.println("Hash c2: " + c2.hashCode()); // ex: 20
+        // saldos depois da atualização
+        System.out.println("Conta Normal saldo: " + contaNormal.getSaldo());
+        System.out.println("Conta Especial saldo: " + contaEspecial.getSaldo());
 
+        // saca 100 em todas as contas
+        contaNormal.saque(100.0);
+        contaEspecial.saque(100.0);
+
+        // mostra os saldos dps do saque 
+        System.out.println("Conta Normal saldo após saque: " + contaNormal.getSaldo());
+        System.out.println("Conta Especial saldo após saque: " + contaEspecial.getSaldo());
+
+        // mostra os hashcodes
+        System.out.println("HashCode da Conta Normal: " + contaNormal.hashCode());
+        System.out.println("HashCode da Conta Especial: " + contaEspecial.hashCode());
+
+        // testa equals
+        Conta outraContaNormal = new Conta(100, 50.0);
+        System.out.println("contaNormal.equals(outraContaNormal): " + contaNormal.equals(outraContaNormal));
+        System.out.println("HashCode outraContaNormal: " + outraContaNormal.hashCode());
     }
 }
